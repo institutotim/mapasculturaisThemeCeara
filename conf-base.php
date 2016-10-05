@@ -27,5 +27,5 @@ return array(
         )
     ),
     //Disabilitar os Selos na inscrição de projetos
-    'app.enabled.seals' => false
+    'app.enabled.seals'   => false
 );
