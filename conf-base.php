@@ -25,5 +25,7 @@ return array(
             'type' => 2,
             'requiredProperties' => array('dataDeNascimento', 'emailPrivado')
         )
-    )
+    ),
+    //Disabilitar os Selos na inscrição de projetos
+    'app.enabled.seals' => false
 );
