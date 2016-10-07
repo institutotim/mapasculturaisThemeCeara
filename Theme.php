@@ -46,4 +46,23 @@ class Theme extends BaseV1\Theme{
         }
     }
 
+    function includeCommonAssets() {
+        $this->getAssetManager()->publishFolder('fonts/');
+
+        $this->enqueueStyle('app', 'main', 'css/main.css');
+
+        $this->enqueueScript('app', 'tim', 'js/tim.js');
+        $this->enqueueScript('app', 'mapasculturais', 'js/mapasculturais.js', array('tim'));
+
+        $this->enqueueScript('app', 'ng-mapasculturais', 'js/ng-mapasculturais.js', array('mapasculturais'));
+        $this->enqueueScript('app', 'mc.module.notifications', 'js/ng.mc.module.notifications.js', array('ng-mapasculturais'));
+
+        $this->enqueueScript('app', 'ceara', 'js/ceara.js', array('mc.module.notifications'));
+
+        if ($this->isEditable())
+            $this->includeEditableEntityAssets();
+
+        if (App::i()->config('mode') == 'staging')
+            $this->enqueueStyle('app', 'staging', 'css/staging.css', array('main'));
+    }
 }

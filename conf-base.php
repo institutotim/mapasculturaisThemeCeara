@@ -26,6 +26,36 @@ return array(
             'requiredProperties' => array('dataDeNascimento', 'emailPrivado')
         )
     ),
-    //Disabilitar os Selos na inscrição de projetos
+    // Campos a serem exportados relatorio de inscritos Edital
+    'registration.propertiesToExport' => array(
+        'id',
+        'name',
+        'nomeCompleto',
+        'documento',
+        'dataDeNascimento',
+        'genero',
+        'raca',
+        'location',
+        'En_Nome_Logradouro',
+        'En_Num',
+        'En_CEP',
+        'En_Complemento',
+        'En_Bairro',
+        'En_Municipio',
+        'En_Estado',
+        'geoZona',
+        'geoSubprefeitura',
+        'geoDistrito',
+        'telefone1',
+        'telefone2',
+        'telefonePublico',
+        'emailPrivado',
+        'emailPublico',
+        'site',
+        'googleplus',
+        'facebook',
+        'twitter'
+    ),
+    //Desabilitar os Selos na inscrição de projetos
     'app.enabled.seals'   => false
 );
