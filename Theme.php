@@ -65,4 +65,23 @@ class Theme extends BaseV1\Theme{
         if (App::i()->config('mode') == 'staging')
             $this->enqueueStyle('app', 'staging', 'css/staging.css', array('main'));
     }
+
+    function _init() {
+        parent::_init();
+        $app = App::i();
+        $app->hook('template(agent.<<create|single|edit>>.tab-about-service):end', function() use($app, $entity) {
+
+          $entity = $this->controller->requestedEntity;
+
+          if($this->isEditable()):
+            echo '<p class="privado">
+                <span class="icon icon-private-info"></span>
+                <span class="label">RG:</span>
+                <span class="js-editable" data-edit="rg" data-original-title="RG" data-emptytext="Insira o RG do agente">'
+                   . $entity->rg .
+                '</span>
+              </p>';
+          endif;
+        });
+    }
 }
