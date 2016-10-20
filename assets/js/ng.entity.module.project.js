@@ -1026,7 +1026,7 @@ module.controller('RegistrationConfigurationsController', ['$scope', '$rootScope
             };
 
             $scope.usingFilters = function(){
-                return $scope.data.registrationStatus || $scope.data.registrationCategory;
+                return $scope.data.registrationStatus !== null || $scope.data.registrationCategory;
             };
 
             var adjustBoxPosition = function () {
