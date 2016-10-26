@@ -48,6 +48,9 @@
                     <div ng-if="usingFilters()">
 
                       <!--Pendente-->
+                      <li ng-if="showStatusRegistration(STATUS.PENDING) && getFilteredRegistrationsPendingCount() === 0">
+                        <span>Nenhuma inscrição pendente.</span>
+                      </li>
                       <li ng-if="showStatusRegistration(STATUS.PENDING) && getFilteredRegistrationsPendingCount() === 1">
                         <span>1 inscrição pendente.</span>
                       </li>
@@ -55,7 +58,11 @@
                         <span>{{getFilteredRegistrationsPendingCount()}} inscrições pendentes.</span>
                       </li>
 
+
                       <!-- Não selecionada -->
+                      <li ng-if="showStatusRegistration(STATUS.NOTAPPROVED) && getFilteredRegistrationsNotaAprovedCount() === 0">
+                        <span>Nenhuma inscrição não selecionada.</span>
+                      </li>
                       <li ng-if="showStatusRegistration(STATUS.NOTAPPROVED) && getFilteredRegistrationsNotaAprovedCount() === 1">
                         <span>1 inscrição não selecionada.</span>
                       </li>
@@ -63,7 +70,11 @@
                         <span>{{getFilteredRegistrationsNotaAprovedCount()}} inscrições não selecionadas.</span>
                       </li>
 
+
                       <!-- Suplente -->
+                      <li ng-if="showStatusRegistration(STATUS.WAITLIST) && getFilteredRegistrationsWaitListCount() === 0">
+                        <span>Nenhuma inscrição suplente.</span>
+                      </li>
                       <li ng-if="showStatusRegistration(STATUS.WAITLIST) && getFilteredRegistrationsWaitListCount() === 1">
                         <span>1 inscrição suplente.</span>
                       </li>
@@ -72,6 +83,9 @@
                       </li>
 
                       <!-- Inválida -->
+                      <li ng-if="showStatusRegistration(STATUS.INVALID) && getFilteredRegistrationsInvalidCount() === 0">
+                        <span>Nenhuma inscrição inválida.</span>
+                      </li>
                       <li ng-if="showStatusRegistration(STATUS.INVALID) && getFilteredRegistrationsInvalidCount() === 1">
                         <span>1 inscrição inválida.</span>
                       </li>
@@ -80,15 +94,69 @@
                       </li>
 
                       <!-- Aprovada -->
+                      <li ng-if="showStatusRegistration(STATUS.APPROVED) && getFilteredRegistrationsAprovedCount() === 0">
+                        <span>Nenhuma inscrição selecionada.</span>
+                      </li>
                       <li ng-if="showStatusRegistration(STATUS.APPROVED) && getFilteredRegistrationsAprovedCount() === 1">
                         <span>1 inscrição selecionada.</span>
                       </li>
                       <li ng-if="showStatusRegistration(STATUS.APPROVED) && getFilteredRegistrationsAprovedCount() > 1">
                         <span>{{getFilteredRegistrationsAprovedCount()}} inscrições selecionadas.</span>
                       </li>
+
+                      <!-- Rascunho -->
+                      <li ng-if="showStatusRegistration(STATUS.DRAFT) && getFilteredRegistrationsDraftCount() === 0">
+                        <span>Nenhuma inscrição em rascunho.</span>
+                      </li>
+                      <li ng-if="showStatusRegistration(STATUS.DRAFT) && getFilteredRegistrationsDraftCount() === 1">
+                        <span>1 inscrição em rascunho.</span>
+                      </li>
+                      <li ng-if="showStatusRegistration(STATUS.DRAFT) && getFilteredRegistrationsDraftCount() > 1">
+                        <span>{{getFilteredRegistrationsDraftCount()}} inscrições em rascunho.</span>
+                      </li>
+
                     </div>
 
                     <div ng-if="!usingFilters()">
+                      <!--Pendente-->
+                      <li ng-if="getFilteredRegistrationsPendingCount() === 1">
+                        <span>1 inscrição pendente.</span>
+                      </li>
+                      <li ng-if="getFilteredRegistrationsPendingCount() > 1">
+                        <span>{{getFilteredRegistrationsPendingCount()}} inscrições pendentes.</span>
+                      </li>
+
+                      <!-- Não selecionada -->
+                      <li ng-if="getFilteredRegistrationsNotaAprovedCount() === 1">
+                        <span>1 inscrição não selecionada.</span>
+                      </li>
+                      <li ng-if="getFilteredRegistrationsNotaAprovedCount() > 1">
+                        <span>{{getFilteredRegistrationsNotaAprovedCount()}} inscrições não selecionadas.</span>
+                      </li>
+
+                      <!-- Suplente -->
+                      <li ng-if="getFilteredRegistrationsWaitListCount() === 1">
+                        <span>1 inscrição suplente.</span>
+                      </li>
+                      <li ng-if="getFilteredRegistrationsWaitListCount() > 1">
+                        <span>{{getFilteredRegistrationsWaitListCount()}} inscrições suplentes.</span>
+                      </li>
+
+                      <!-- Inválida -->
+                      <li ng-if="getFilteredRegistrationsInvalidCount() === 1">
+                        <span>1 inscrição inválida.</span>
+                      </li>
+                      <li ng-if="getFilteredRegistrationsInvalidCount() > 1">
+                        <span>{{getFilteredRegistrationsInvalidCount()}} inscrições inválidas.</span>
+                      </li>
+
+                      <!-- Aprovada -->
+                      <li ng-if="getFilteredRegistrationsAprovedCount() === 1">
+                        <span>1 inscrição selecionada.</span>
+                      </li>
+                      <li ng-if="getFilteredRegistrationsAprovedCount() > 1">
+                        <span>{{getFilteredRegistrationsAprovedCount()}} inscrições selecionadas.</span>
+                      </li>
 
                       <!--Rascunho-->
                       <li ng-if="getFilteredRegistrationsDraftCount() === 1">
@@ -98,14 +166,16 @@
                         <span>{{getFilteredRegistrationsDraftCount()}} inscrições em rascunho.</span>
                       </li>
 
+
+
                       <li ng-if="getFilteredRegistrations().length === 0">
                         <span>Nenhuma inscrição enviada.</span>
                       </li>
-                      <li ng-if="getFilteredRegistrationsDraft().length === 1">
-                        <span>1 inscrição enviada.</span>
+                      <li ng-if="getFilteredRegistrations().length === 1">
+                        <span>Total de 1 inscrição enviada.</span>
                       </li>
                       <li ng-if="getFilteredRegistrations().length > 1">
-                        <span>{{getFilteredRegistrations().length}} inscrições enviadas.</span>
+                        <span>Total de {{getFilteredRegistrations().length}} inscrições enviadas.</span>
                       </li>
                     </div>
 
