@@ -1975,6 +1975,11 @@ article.seal .header-image {
       width: 100%;
       padding: 1.5rem; } }
 
+.required:before {
+  content: "*";
+  display: inline-block;
+  color: red; }
+
 /* = Main section
 -------------------------------------------------------------- */
 #main-section {
@@ -3248,6 +3253,9 @@ h1 .icon {
 
 .icon-panel:before {
   content: ""; }
+
+.icon-group:before {
+  content: ""; }
 
 .icon-home:before {
   content: ""; }
