@@ -69,7 +69,7 @@ class Theme extends BaseV1\Theme{
     function _init() {
         parent::_init();
         $app = App::i();
-        $app->hook('template(agent.<<create|single|edit>>.tab-about-service):end', function() use($app, $entity) {
+        $app->hook('template(agent.<<create|single|edit>>.tab-about-service):end', function() use($app) {
 
           $entity = $this->controller->requestedEntity;
 
